@@ -97,7 +97,7 @@ function agregarTarea() {
   //agregar clase de item lista de bootstrap
   li.setAttribute('class', 'list-group-item');
   //agregamos manejador de evento del doble click para eliminar tanto de la lista como del localStorage
-  li.setAttribute('ondblclick', "if (confirm('deseas eliminar este producto')) { console.log(this.textContent); eliminarElementoDeArregloEnLocalStorage('arreglo', this.textContent); this.parentNode.removeChild(this);}");
+  li.setAttribute('ondblclick', "if (confirm('deseas eliminar esta tarea?')) { console.log(this.textContent); eliminarElementoDeArregloEnLocalStorage('arreglo', this.textContent); this.parentNode.removeChild(this);}");
   //agregamos contenido al li
   li.appendChild(contentLi);
   //agregamos el li a la lista
