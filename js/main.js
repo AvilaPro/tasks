@@ -24,6 +24,7 @@ function ejecucionInicial() {
 
       // Agregar la lista al HTML
       const elementoUl = document.querySelector("#lista");
+      elementoUl.innerHTML = '';
       for (const elemento of lista) {
         // Crear el elemento li
         const elementoLi = document.createElement("li");
@@ -38,7 +39,7 @@ function ejecucionInicial() {
         elementoLi.appendChild(spanLi);
 
         //agregamos manejador de evento del doble click para eliminar tanto de la lista como del localStorage
-        elementoLi.setAttribute('ondblclick', "if (confirm('deseas eliminar esta tarea?')) { console.log(this.textContent); eliminarElementoDeArregloEnLocalStorage('arreglo', this.textContent); this.parentNode.removeChild(this);}");
+        // elementoLi.setAttribute('ondblclick', "if (confirm('deseas eliminar esta tarea?')) { console.log(this.textContent); eliminarElementoDeArregloEnLocalStorage('arreglo', this.textContent); this.parentNode.removeChild(this);}");
         elementoLi.innerHTML += '<button class="btn btn-warning" onclick="editarLi(this)"><i class="bi bi-pen"></i></button> <button class="btn btn-danger" onclick="eliminarLi(this)"><i class="bi bi-x-circle"></i></button>'
 
         // Agregar el elemento li al elemento ul
@@ -144,7 +145,6 @@ function editarLi(el) {
     nuevoValor = prompt(`Ingresa el nuevo valor: (antes: ${el.parentNode.children[0].textContent})`);
     if (nuevoValor.length > 0) {
       editarElementoArregloEnLocalStorage('arreglo', el.parentNode.children[0].textContent, nuevoValor);
-      el.parentNode.parentNode.innerHTML = '';
       ejecucionInicial();
     }
   }
@@ -153,7 +153,6 @@ function editarLi(el) {
 function eliminarLi(el) {
   if (confirm('Deseas eliminarlo?')) {
     eliminarElementoDeArregloEnLocalStorage('arreglo', el.parentNode.children[0].textContent);
-    el.parentNode.parentNode.innerHTML = '';
     ejecucionInicial();
   }
 }
